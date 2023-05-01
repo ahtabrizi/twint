@@ -112,7 +112,19 @@ async def RequestUrl(config, init):
     _serialQuery = ""
     params = []
     _url = ""
-    _headers = [("authorization", config.Bearer_token), ("x-guest-token", config.Guest_token)]
+    _headers = [('accept', '*/*'),
+                ('accept-language', 'en-US,en;q=0.9' ),
+                ("x-guest-token", config.Guest_token),
+                ("authorization", config.Bearer_token), 
+                ("cookie", f'guest_id=v1%3{config.Guest_token}; auth_token={config.Auth_token}; lang=en; ct0={config.csrf_token}; gt={config.Guest_token}'),
+                ('x-csrf-token', config.csrf_token),
+                ('sec-ch-ua-mobile', '?0'),
+                ('sec-fetch-dest', 'empty'),
+                ('sec-fetch-mode', 'cors'),
+                ('sec-fetch-site', 'same-origin',),
+                ('x-twitter-active-user', 'yes'),
+                ('x-twitter-client-language', 'en'),
+                ]
 
     # TODO : do this later
     if config.Profile:

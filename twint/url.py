@@ -68,7 +68,7 @@ async def MobileProfile(username, init):
 async def Search(config, init):
     logme.debug(__name__ + ':Search')
     url = base
-    tweet_count = 100
+    tweet_count = 50
     q = ""
     params = [
         # ('include_blocking', '1'),
@@ -91,12 +91,13 @@ async def Search(config, init):
         ('simple_quoted_tweet', 'true'),
         ('count', tweet_count),
         ('query_source', 'typed_query'),
-        # ('pc', '1'),
-        ('cursor', str(init)),
+        ('pc', '1'),
         ('spelling_corrections', '1'),
         ('ext', 'mediaStats%2ChighlightedLabel'),
-        ('tweet_search_mode', 'live'),  # this can be handled better, maybe take an argument and set it then
+        # ('tweet_search_mode', 'live'),  # this can be handled better, maybe take an argument and set it then
     ]
+    if not init== -1:
+        params.append(('cursor', str(init)))
     if not config.Popular_tweets:
         params.append(('f', 'tweets'))
     if config.Lang:

@@ -85,3 +85,7 @@ class Config:
     Bearer_token: str = None
     Guest_token: str = None
     deleted: list = None
+    Utc: bool = True
+    Full_text: bool = True
+    Auth_token: str = None
+    csrf_token: str = None
